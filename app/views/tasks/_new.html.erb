@@ -1,0 +1,7 @@
+<div class="edit-create">
+  <%=form_for(:task, url: tasks_path, method: :post, remote: true) do |f|%>
+  <h1><%=f.label "Add Task"%></h1>
+  <%=f.text_field :body, required: true%>
+  <%=f.submit "Add", class: "btn btn-primary"%>
+  <%end%>
+</div>

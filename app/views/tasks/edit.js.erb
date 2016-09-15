@@ -1,0 +1,5 @@
+$('.task[data-id=<%=@task.id%>]').html("<%=j render partial: 'edit', locals: {task: @task}%>")
+
+$('.cancel-edit').on('click', function(){
+  $('.edit-task').replaceWith('<%=j render partial: 'task',locals: {task: @task}%>')
+})

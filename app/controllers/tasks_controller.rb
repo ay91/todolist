@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  respond_to :js
 
   def index
     @tasks = Task.all
@@ -9,8 +10,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    redirect_to root_path
+    @task = current_user.tasks.create(task_params)
+
+    if @task.save
+      redirect_to tasks_path
+    end
   end
 
   def edit
@@ -19,15 +23,24 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by(id: params[:id])
-    @task.update
-    redirect_to root_path
+
+    if @task.update(task_params)
+      redirect_to tasks_path
+    else
+      redirect_to tasks_path
+    end
   end
 
   def destroy
     @task = Task.find_by(id: params[:id])
-    @task.destroy
-    redirect_to root_path
-    
+
+    if @task.destroy
+      redirect_to tasks_path
+    else
+      redirect_to tasks_path
+    end
+  end
+
   private
 
   def task_params
