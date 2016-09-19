@@ -41,6 +41,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def complete
+    @task = Task.find_by(id: params[:id])
+    @task.update_attributes(:completed => params[:completed])
+  end
+
   private
 
   def task_params

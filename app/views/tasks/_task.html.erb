@@ -1,6 +1,9 @@
+
 <div class="task" data-id= "<%=task.id%>">
-  <%=check_box_tag "tasks_checkbox[]"%>
-  <%=task.body%>
+  <%=check_box_tag 'completed', task.id, task.completed, remote: true, class: "task_checkbox"%>
+  <span class="task-text <%= task.completed ? 'strike' : '' %>" data-id="<%=task.id%>">
+    <%=task.body%>
+  </span>
   <%=link_to "Edit", edit_task_path(task), remote: true, class: "btn btn-primary"%>
   <%=link_to "Delete", task_path(task), remote:true, method: :delete, class: "btn btn-primary"%>
 </div><br>
