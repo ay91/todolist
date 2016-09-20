@@ -1,8 +1,12 @@
-<%if current_user%>
-<%=link_to current_user.username, edit_user_registration_path %>
-<%=link_to "Sign Out", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
-<%else%>
-<%=link_to "Register", new_user_registration_path, class: "btn btn-primary"  %>
-<%=link_to "Sign In", user_session_path, class: "btn btn-success", method: :post %>
-<%=link_to "Facebook Login", user_facebook_omniauth_authorize_path%>
-<%end%>
+<div class="header-container">
+  <ul class="nav navbar-nav navbar-left">
+    <%if current_user%>
+      <li><%=link_to current_user.username, edit_user_registration_path, class: "white" %></li>
+      <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete, class: "white" %></li>
+    <%else%>
+      <li><%=link_to "Register", new_user_registration_path, class: "white" %></li>
+      <li><%=link_to "Sign In", user_session_path, method: :post , class: "white"%></li>
+      <li><%=link_to "Facebook Login", user_facebook_omniauth_authorize_path, class: "white"%></li>
+    <%end%>
+  </ul>
+</div>

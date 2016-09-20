@@ -1,1 +1,14 @@
-<h1>Your to-do list</h1>
+<div class="index-container text-center">
+  <div class="index-head">
+    <h1>Are you up to your tasks today? Buck Up!!</h1>
+  </div>
+  <br>
+  <div class="time">
+    <%=Time.new.strftime("%d-%m-%Y %I:%M %P")%>
+  </div>
+  <div class="index-tasks">
+    <h3>You have <%=Task.count%> tasks today.</h3>
+    <br>
+    <%=link_to "Check out Tasks!", tasks_path, class: "btn btn-success"%>
+  </div>
+</div>

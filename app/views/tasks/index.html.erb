@@ -1,9 +1,13 @@
-<h1>What are your tasks today?</h1>
-
-<div class="task-index">
-  <%@tasks.each do |task|%>
-  <%=render partial: "task", locals: {task: task}%>
-  <%end%>
+<div class="task-index-container">
+  <div class="task-index-head text-center">
+    <h1>What are your tasks today?</h1>
+  </div>
+  <div class="new-tasks">
+    <%=render partial: "new", locals: {task: @task}%>
+  </div>
+  <div class="task-index">
+    <%@tasks.each do |task|%>
+    <%=render partial: "task", locals: {task: task}%>
+    <%end%>
+  </div>
 </div>
-
-<%=render partial: "new", locals: {task: @task}%>
