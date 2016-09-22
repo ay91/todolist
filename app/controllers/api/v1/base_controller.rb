@@ -1,6 +1,9 @@
-class API::BaseController < ApplicationController::Base
+class API::V1::BaseController < ActionController::Base
   protect_from_forgery with: :null_session
   skip_before_action :verify_authenticity_token, if: :json_request?
+
+  class NotAuthenticatedError < StandardError
+  end
 
   rescue_from NotAuthenticatedError do
     render json: {error: "Not Authorised!"}, status: 401
@@ -21,8 +24,8 @@ class API::BaseController < ApplicationController::Base
     return @http_auth_header_content if defined?(@http_auth_header_content)
 
     @http_auth_header_content = begin
-    return request.headers['Authorization'] if request.headers['Authorization'].present?
-    nil
+      return request.headers['Authorization'] if request.headers['Authorization'].present?
+      nil
     end
   end
 

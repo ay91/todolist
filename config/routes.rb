@@ -4,5 +4,11 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   post 'auth_user' => 'authentication#authenticate_user'
   post :complete, to: 'tasks#complete'
-  resources :tasks
+  # resources :tasks
+
+  namespace :api do
+    namespace :v1 do
+      resources :tasks
+    end
+  end
 end

@@ -1,3 +1,3 @@
 class TaskSerializer < ActiveModel::Serializer
-  attributes :description
+  attributes :created_at, :body, :user_id, :completed
 end
