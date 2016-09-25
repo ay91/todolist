@@ -4,7 +4,7 @@ class API::V1::TasksController < API::V1::BaseController
 
   def index
     @tasks = Task.all
-    render json:@tasks
+    render json: @tasks
   end
 
   def new
@@ -12,10 +12,9 @@ class API::V1::TasksController < API::V1::BaseController
   end
 
   def create
-    @task = current_user.tasks.create(task_params)
-
+    @task = current_api_user.tasks.create(task_params)
     if @task.save
-      redirect_to tasks_path
+      render json: @task, status: :created
     end
   end
 
@@ -35,17 +34,15 @@ class API::V1::TasksController < API::V1::BaseController
 
   def destroy
     @task = Task.find_by(id: params[:id])
-
     if @task.destroy
-      redirect_to tasks_path
-    else
-      redirect_to tasks_path
+      render json: @task, status: 200 
     end
   end
 
   def complete
     @task = Task.find_by(id: params[:id])
     @task.update_attributes(:completed => params[:completed])
+    render json: @task
   end
 
   private

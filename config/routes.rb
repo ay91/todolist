@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   root to: 'landing#index'
   post 'auth_user' => 'authentication#authenticate_user'
   post :complete, to: 'tasks#complete'
-  # resources :tasks
+  resources :tasks
 
   namespace :api do
     namespace :v1 do
       resources :tasks
+      post :complete, to: 'tasks#complete'
+      match "registration" => "registration#create", via: :post
     end
   end
 end
