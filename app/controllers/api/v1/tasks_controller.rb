@@ -1,6 +1,7 @@
 class API::V1::TasksController < API::V1::BaseController
   before_action :authenticate_request
-  respond_to :js
+  respond_to :json
+  # respond_to :js
 
   def index
     @tasks = Task.all
@@ -14,7 +15,7 @@ class API::V1::TasksController < API::V1::BaseController
   def create
     @task = current_api_user.tasks.create(task_params)
     if @task.save
-      render json: @task, status: :created
+      render json: @task, status: 200
     end
   end
 
@@ -35,7 +36,7 @@ class API::V1::TasksController < API::V1::BaseController
   def destroy
     @task = Task.find_by(id: params[:id])
     if @task.destroy
-      render json: @task, status: 200 
+      render json: @task, status: 200
     end
   end
 

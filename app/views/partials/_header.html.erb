@@ -5,7 +5,7 @@
       <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete, class: "white" %></li>
     <%else%>
       <li><%=link_to "Register", new_user_registration_path, class: "white" %></li>
-      <li><%=link_to "Sign In", user_session_path, method: :post , class: "white"%></li>
+      <li><%=link_to "Sign In", user_session_path, class: "white"%></li>
       <li><%=link_to "Facebook Login", user_facebook_omniauth_authorize_path, class: "white"%></li>
     <%end%>
   </ul>

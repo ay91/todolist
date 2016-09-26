@@ -32,6 +32,7 @@ class API::V1::BaseController < ActionController::Base
   protected
 
   def json_request?
+    binding.pry
     request.format.json?
   end
 end
